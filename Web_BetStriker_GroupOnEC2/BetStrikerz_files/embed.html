@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0058)http://cache.vevo.com/m/html/embed.html?video=USSM21000872 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>VEVO EMBED IFRAME</title>
+	<script src="swfobject.js" type="text/javascript"></script>
+	<script type="text/javascript" src="embed.js"></script>
+	<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="streamsense.min.js"></script>
+	<script type="text/javascript" src="AdManager.js"></script>
+	<script type="text/javascript" src="LivePass.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () { selectEmbed(); });
+	</script>
+	<style type="text/css">
+
+		#videoPlayerHTML5, #wrapper, #playerHTML5, #playerSWF
+		{
+			width:100%;
+			height:100%;
+			margin:0px;
+			padding:0;
+			background-color:#000000;
+		}
+
+		html
+		{
+			width:100%;
+			height:100%;
+			overflow:hidden;
+		}
+
+		body
+		{
+			height:100%;
+			margin:0px;
+			padding:0;
+		}
+		
+		#video_overlay {
+			position:absolute;
+   			z-index:19790119;
+			opacity:0.4;
+    			filter:alpha(opacity=40);
+    			top: 20px;
+    			right: 20px;
+		}
+		
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+
+		function selectEmbed() {
+			switch (getParameter("forceSelect")) {
+				case "0":
+					$("#playerHTML5").hide();
+					embedSwf(); break;
+				case "1":
+					$("#playerSWF").hide();
+					initializeHTML5(); break;
+				default:
+					embedDynamicVideo(); break;
+			}
+		}
+
+		function embedDynamicVideo() {
+			var video = getParameter("video");
+			var playlist = getParameter("playlist") || false;
+			var autoplay = getParameter("autoplay") || "0";
+			var playerType = getParameter("playerType") || "embedded";
+			var cultureName = getParameter("cultureName") || "en_us";
+			var cultureIsRTL = getParameter("cultureIsRTL") || "False";
+			var embed = getParameter("embed");
+			var sbId = getParameter("sbId") || "C188A3CA-3593-453A-B995-394B7A7E5332";
+			var siteSection = getParameter("siteSection") || "vevo_player_embedded";
+
+			vevoEmbed.embedDynamicVideo(video, siteSection, sbId, $("#playerHTML5"), $("#videoPlayerHTML5"), "playerSWF", "videoPlayerSWF", $("#playerSWF").width(), $("#playerSWF").height());
+		}
+
+		function initializeHTML5() {
+			var sbId = getParameter("sbId") || "C188A3CA-3593-453A-B995-394B7A7E5332";
+			var video = getParameter("video");
+			var autoplay = getParameter("autoplay") || "0";
+			var addAuto = (autoplay == "1");
+
+			if (addAuto) {
+				$('videoPlayerHTML5').attr('autoPlay', true);
+			}
+			var siteSection = getParameter("siteSection") || "vevo_player_embedded";
+			vevoEmbed.embedVevoVideo(video, siteSection, sbId, $('#playerHTML5'), $('#videoPlayerHTML5'));
+		}
+
+		function getParameter(sParam) {
+			var sPageURL = window.location.search.substring(1);
+			var sURLVariables = sPageURL.split('&');
+			for (var i = 0; i < sURLVariables.length; i++) {
+				var sParameterName = sURLVariables[i].split('=');
+				if (sParameterName[0] == sParam) {
+					return sParameterName[1];
+				}
+			}
+		}
+
+		function embedSwf() {
+
+			var video = getParameter("video");
+			var playlist = getParameter("playlist") || false;
+			var autoplay = getParameter("autoplay") || "0";
+			var playerType = getParameter("playerType") || "embedded";
+			var cultureName = getParameter("cultureName") || "en_us";
+			var cultureIsRTL = getParameter("cultureIsRTL") || "False";
+			var embed = getParameter("embed");
+			var sbId = getParameter("sbId") || "C188A3CA-3593-453A-B995-394B7A7E5332";
+			var siteSection = getParameter("siteSection") || "vevo_player_embedded";
+			
+
+			var environment = getParameter("branch");
+			var baseurl = ""
+			switch (environment) {
+				case 'local': baseurl = "http://localhost:3086"; break;
+				case 'staging': baseurl = "http://stg-videoplayer.vevo.com"; break;
+				default: baseurl = "http://videoplayer.vevo.com"; break;
+			}
+
+			swfobject.embedSWF(baseurl + "/embed/embedded", "playerSWF", "100%", "100%", "10.1.53", false, { /*flashvars*/
+				'playerType': playerType,
+				'videoId': video,
+				'playlist': playlist,
+				'enableDomScan': 'false',
+				'siteSection': siteSection,
+				'autoplay': autoplay,
+				'cc': "US",
+				'cultureName': cultureName,
+				'cultureIsRTL': cultureIsRTL,
+				'embed': embed,
+				'endScreen': 'play',
+				'sbId': sbId
+			}, { /*params*/
+				bgcolor: "#000000",
+				allowFullScreen: "true",
+				allowScriptAccess: "always",
+				wmode: "transparent"
+			}, { /*attributes*/
+				id: "videoPlayerSWF"
+			});
+		}
+	</script>
+	<object type="application/x-shockwave-flash" id="videoPlayerSWF" data="http://videoplayer.vevo.com/embed/embedded" width="709" height="398"><param name="bgcolor" value="#000000"><param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always"><param name="wmode" value="transparent"><param name="flashvars" value="playerType=embedded&amp;videoId=USSM21000872&amp;playlist=false&amp;enableDomScan=false&amp;siteSection=vevo_player_embedded&amp;autoplay=0&amp;cc=US&amp;cultureName=en_us&amp;cultureIsRTL=False&amp;embed=&amp;endScreen=play&amp;sbId=C188A3CA-3593-453A-B995-394B7A7E5332&amp;enableShare=true"></object>
+	<div id="playerHTML5" style="display: none;">
+		<div id="video_overlay">
+			<img id="imageBug">
+		</div>
+		<video id="videoPlayerHTML5"></video>
+	</div>
+
+
+</body></html>
